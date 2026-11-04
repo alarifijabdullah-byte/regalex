@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regalex Brand Guide C</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;1,700;1,800;1,900&family=Barlow:wght@400;500;600&family=Cairo:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1630; --navy-2:#13234A; --yellow:#FFC400; --white:#fff; --asphalt:#2A3242; --concrete:#EEF0F3; --grey:#6A7385;
+  --line:rgba(11,22,48,.14);
+  --ar:"Cairo",system-ui,sans-serif; --lat:"Barlow Condensed",sans-serif; --body:"Barlow",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--ar);background:var(--concrete);color:var(--navy);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.lat{font-family:var(--lat);font-style:italic;font-weight:800;text-transform:uppercase;direction:ltr;unicode-bidi:isolate;letter-spacing:.01em}
+.lbl{font-family:var(--lat);font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;direction:ltr;unicode-bidi:isolate}
+svg.mk{display:block;flex:none}
+section{padding:96px 0}
+.sh{display:flex;align-items:center;gap:20px;margin-bottom:48px}
+.sh .n{background:var(--yellow);color:var(--navy);font-family:var(--lat);font-style:italic;font-weight:900;font-size:40px;line-height:1;padding:10px 18px 8px;clip-path:polygon(10% 0,100% 0,90% 100%,0 100%);direction:ltr}
+.sh h2{font-size:46px;font-weight:900;line-height:1.1}
+.sh h2 .lbl{display:block;color:var(--grey);font-size:14px;margin-top:6px;text-align:right}
+.lead{font-size:20px;max-width:62ch}
+
+/* hazard stripe */
+.hz{height:18px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 18px,var(--navy) 18px 36px)}
+
+.wm{display:flex;align-items:center;gap:14px;direction:ltr}
+.wm .t .a{text-align:left}
+.wm .t{display:flex;flex-direction:column;line-height:1}
+.wm .t .lat{font-size:40px;line-height:.9}
+.wm .t .a{font-weight:800;font-size:19px;margin-top:4px}
+
+/* cover */
+.cover{background:var(--navy);color:var(--white);min-height:min(100vh,900px);display:flex;flex-direction:column;justify-content:space-between;padding:40px 0 0;position:relative;overflow:hidden}
+.cover h1{font-size:clamp(60px,10vw,150px);font-weight:900;line-height:1.05}
+.cover h1 span{color:var(--yellow)}
+.cover .row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;position:relative}
+.chev{position:absolute;inset-inline-start:0;top:0;bottom:0;width:48%;opacity:.07;pointer-events:none}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tile{padding:40px;min-height:270px;display:flex;flex-direction:column;justify-content:space-between}
+.tile .lbl{opacity:.6;text-align:left}
+.c-navy{background:var(--navy);color:var(--white)}
+.c-yel{background:var(--yellow);color:var(--navy)}
+.c-white{background:var(--white)}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.explain{background:var(--white);padding:40px}
+.explain ol{list-style:none;margin-top:24px;display:grid;gap:14px}
+.explain li{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start}
+.explain li b{background:var(--navy);color:var(--yellow);font-family:var(--lat);font-style:italic;font-weight:800;text-align:center;line-height:30px}
+
+.rules{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
+.rule{background:var(--white);padding:24px}
+.rule .demo{height:120px;display:grid;place-items:center;margin-bottom:16px;background:var(--concrete);position:relative}
+.rule p{font-size:14px;color:#3a4252}
+.rule.no .demo::after{content:"";position:absolute;inset:14px;background:linear-gradient(to top left,transparent calc(50% - 1px),#D33 calc(50% - 1px),#D33 calc(50% + 1px),transparent calc(50% + 1px))}
+
+.sws{display:grid;grid-template-columns:2fr 1.4fr 1fr 1fr}
+.sw{min-height:330px;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.sw h3{font-size:26px;font-weight:800}
+.sw dl{font-family:var(--body);font-size:13px;display:grid;grid-template-columns:auto 1fr;gap:4px 14px;direction:ltr;text-align:left}
+.sw dt{opacity:.6}
+
+.type{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.spec{background:var(--white);padding:40px}
+.spec .big{font-size:130px;line-height:1}
+.scale{margin-top:16px;display:grid;gap:18px}
+.scale div{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:baseline;border-top:1px solid var(--line);padding-top:16px}
+.scale .lbl{color:var(--grey);font-size:12px}
+
+.kit{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+.label{background:var(--white);padding:0;border:2px solid var(--navy);font-family:var(--body);direction:ltr;text-align:left}
+.label .r{display:grid;border-bottom:2px solid var(--navy)}
+.label .r:last-child{border:0}
+.label .c{padding:12px 16px;border-inline-end:2px solid var(--navy)}
+.label .c:last-child{border:0}
+.label small{display:block;font-family:var(--lat);font-weight:600;font-size:12px;letter-spacing:.1em;color:var(--grey);text-transform:uppercase}
+.label .v{font-family:var(--lat);font-weight:800;font-style:italic;font-size:30px;line-height:1.05;text-transform:uppercase}
+.icons{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:16px}
+.ic{background:var(--white);padding:22px;display:flex;flex-direction:column;gap:14px;font-size:14px;font-weight:600}
+.ic svg{width:44px;height:44px}
+
+.tag{background:var(--yellow);color:var(--navy);padding:56px 48px;grid-column:1/-1;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;position:relative;overflow:hidden}
+.tag .a{font-size:76px;font-weight:900;line-height:1.05}
+.tag .lat{font-size:40px}
+.voice{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.do{background:var(--white);padding:32px}
+.do h4{font-size:19px;margin-bottom:14px;font-weight:800}
+.do ul{list-style:none;display:grid;gap:10px;font-size:15px}
+.do li{padding-inline-start:22px;position:relative}
+.do li::before{content:"";position:absolute;inset-inline-start:0;top:.5em;width:12px;height:10px;background:var(--yellow);clip-path:polygon(0 0,60% 0,100% 50%,60% 100%,0 100%,40% 50%)}
+html[dir=rtl] .do li::before{transform:scaleX(-1)}
+.do.dont li::before{background:#D33;clip-path:none;width:10px;height:2px;top:.8em;transform:none}
+
+.apps{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.app{background:#DADFE6;padding:40px;display:grid;place-items:center;min-height:360px;position:relative}
+.app .lbl{position:absolute;top:20px;inset-inline-start:24px;color:var(--grey)}
+.app.wide{grid-column:1/-1}
+.card{width:340px;height:200px;box-shadow:0 30px 60px -20px rgba(11,22,48,.4);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.cards{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.compare{background:var(--white);padding:32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.compare h4{font-size:15px;color:var(--grey);font-weight:600;margin-bottom:6px}
+.compare p{font-weight:600}
+footer{background:var(--navy);color:var(--white);padding:40px 0}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .wrap{padding:0 16px}
+  section{padding:64px 0}
+  .sh h2{font-size:32px}.sh .n{font-size:30px}
+  .g2,.g3,.story,.type,.voice,.apps,.kit,.compare{grid-template-columns:1fr}
+  .sws{grid-template-columns:1fr 1fr}
+  .rules{grid-template-columns:1fr 1fr}
+  .icons{grid-template-columns:repeat(3,1fr)}
+  .spec .big{font-size:84px}.tag .a{font-size:46px}
+  .card{width:100%;max-width:340px}
+  .wm .t .lat{font-size:30px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <!-- Forward R: italic R whose bowl is a forward chevron and leg a drive line, with speed bars -->
+  <symbol id="mr" viewBox="0 0 56 48">
+    <g transform="translate(10 0) skewX(-12)">
+      <rect x="2" y="9" width="9" height="4.5"/>
+      <rect x="5" y="18" width="6" height="4.5"/>
+      <rect x="8" y="27" width="3" height="4.5"/>
+      <rect x="14" y="6" width="9" height="36"/>
+      <path fill-rule="evenodd" d="M23 6h11l9 10-9 10H23zM23 13h8l2.6 3-2.6 3h-8z"/>
+      <path d="M27 26h10l10 16H37z"/>
+    </g>
+  </symbol>
+  <pattern id="chev" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M10 0l25 30-25 30h14l25-30L24 0z" fill="#fff"/></pattern>
+</svg>
+
+<!-- COVER -->
+<section class="cover">
+  <svg class="chev" aria-hidden="true"><rect width="100%" height="100%" fill="url(#chev)"/></svg>
+  <div class="wrap row">
+    <div class="wm"><svg class="mk" width="58" height="50" style="color:var(--yellow);fill:currentColor"><use href="#mr"/></svg><span class="lat" style="font-size:34px">REGALEX</span></div>
+    <span class="lbl" style="opacity:.7">Brand guidelines · Option C · 2026</span>
+  </div>
+  <div class="wrap" style="position:relative">
+    <p class="lbl" style="color:var(--yellow);margin-bottom:20px">Identity system — Forward</p>
+    <h1>شركة<br><span>ريجالكس</span></h1>
+  </div>
+  <div class="wrap row" style="padding-bottom:36px">
+    <p style="max-width:46ch;font-size:18px;opacity:.85">الخيار الثالث، بعد ملاحظة العميل: هوية تقول «شركة نقل» من أول نظرة. لغة الطرق والشاحنات والشحن: كحلي وأصفر، خط مائل للأمام، وأسهم وعلامات شحن.</p>
+    <span class="lat" style="font-size:30px;color:var(--yellow)">FROM RIYADH. EVERYWHERE.</span>
+  </div>
+  <div class="hz"></div>
+</section>
+
+<!-- 01 -->
+<section>
+  <div class="wrap">
+    <div class="sh"><span class="n">01</span><h2>الفكرة<span class="lbl">Concept — Forward</span></h2></div>
+    <div class="story">
+      <div>
+        <p class="lead">كل عنصر في هذه الهوية مأخوذ من الطريق: ألوان لوحات الطرق السريعة وعلامات السلامة، خط عريض مائل كأنه يتحرك، وأسهم تشير للأمام دائماً.</p>
+        <p class="lead" style="margin-top:20px">الرمز حرف <b>R</b> مائل للأمام: ساقه خط قيادة، وانحناءته صارت سهماً، وخلفه خطوط سرعة. يقرأه أي شخص كشركة نقل حتى قبل ما يقرأ الاسم.</p>
+      </div>
+      <div class="explain">
+        <svg viewBox="0 0 56 48" width="100%" style="max-width:320px;display:block;margin:0 auto;color:var(--navy);fill:currentColor"><use href="#mr"/></svg>
+        <ol>
+          <li><b>1</b><span>خطوط السرعة: الحركة المستمرة، 24 ساعة.</span></li>
+          <li><b>2</b><span>السهم: الانحناءة تشير للأمام، للوجهة.</span></li>
+          <li><b>3</b><span>خط القيادة: الساق تنطلق بثبات، مثل شاحنة محمّلة على الطريق.</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sh"><span class="n">02</span><h2>الشعار<span class="lbl">Logo &amp; lockups</span></h2></div>
+    <div class="g2">
+      <div class="tile c-navy"><span class="lbl">Primary</span>
+        <div class="wm"><svg class="mk" width="92" height="79" style="color:var(--yellow);fill:currentColor"><use href="#mr"/></svg><div class="t"><span class="lat" style="font-size:52px">REGALEX</span><span class="a">شركة ريجالكس</span></div></div><span></span></div>
+      <div class="tile c-yel"><span class="lbl">On yellow</span>
+        <div class="wm"><svg class="mk" width="92" height="79" style="color:var(--navy);fill:currentColor"><use href="#mr"/></svg><div class="t"><span class="lat" style="font-size:52px">REGALEX</span><span class="a">شركة ريجالكس</span></div></div><span></span></div>
+    </div>
+    <div class="g3" style="margin-top:16px">
+      <div class="tile c-white" style="border:1px solid var(--line)"><span class="lbl">On white</span><div class="wm" style="margin:0 auto"><svg class="mk" width="70" height="60" style="color:var(--navy);fill:currentColor"><use href="#mr"/></svg><span class="lat" style="font-size:40px">REGALEX</span></div><span></span></div>
+      <div class="tile" style="background:var(--concrete)"><span class="lbl">App icon</span><div style="margin:0 auto;width:110px;height:110px;border-radius:24px;background:var(--navy);display:grid;place-items:center"><svg class="mk" width="76" height="65" style="color:var(--yellow);fill:currentColor"><use href="#mr"/></svg></div><span></span></div>
+      <div class="tile c-navy"><span class="lbl">Arabic lockup</span><div style="text-align:center"><svg class="mk" width="70" height="60" style="color:var(--yellow);fill:currentColor;margin:0 auto 8px"><use href="#mr"/></svg><div style="font-weight:900;font-size:40px;line-height:1.1">ريجالكس</div></div><span></span></div>
+    </div>
+    <div class="rules">
+      <div class="rule"><div class="demo"><div style="padding:14px;outline:1px dashed var(--grey)"><svg class="mk" width="56" height="48" style="color:var(--navy);fill:currentColor"><use href="#mr"/></svg></div></div><p><b>المساحة الآمنة</b><br>فراغ بعرض ساق الحرف × 2 حول الشعار.</p></div>
+      <div class="rule"><div class="demo"><svg class="mk" width="24" height="21" style="color:var(--navy);fill:currentColor"><use href="#mr"/></svg></div><p><b>أصغر حجم</b><br>24px على الشاشة، و10mm في الطباعة.</p></div>
+      <div class="rule no"><div class="demo"><svg class="mk" width="56" height="48" style="color:var(--navy);fill:currentColor;transform:scaleX(-1)"><use href="#mr"/></svg></div><p><b>ممنوع</b><br>لا تعكس الرمز. السهم يشير للأمام دائماً، حتى في العربي.</p></div>
+      <div class="rule no"><div class="demo" style="background:var(--yellow)"><svg class="mk" width="56" height="48" style="color:#fff;fill:currentColor"><use href="#mr"/></svg></div><p><b>ممنوع</b><br>لا أبيض على أصفر. على الأصفر نستخدم الكحلي فقط.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section>
+  <div class="wrap">
+    <div class="sh"><span class="n">03</span><h2>الألوان<span class="lbl">Colour palette</span></h2></div>
+    <div class="sws">
+      <div class="sw" style="background:#0B1630;color:#fff"><h3>كحلي الطريق<br><span class="lbl" style="opacity:.6">Highway Navy</span></h3><dl><dt>HEX</dt><dd>#0B1630</dd><dt>RGB</dt><dd>11 22 48</dd><dt>PANTONE</dt><dd>5395 C</dd></dl></div>
+      <div class="sw" style="background:#FFC400"><h3>أصفر الإشارة<br><span class="lbl" style="opacity:.6">Signal Yellow</span></h3><dl><dt>HEX</dt><dd>#FFC400</dd><dt>RGB</dt><dd>255 196 0</dd><dt>PANTONE</dt><dd>7548 C</dd></dl></div>
+      <div class="sw" style="background:#2A3242;color:#fff"><h3>أسفلت<br><span class="lbl" style="opacity:.6">Asphalt</span></h3><dl><dt>HEX</dt><dd>#2A3242</dd></dl></div>
+      <div class="sw" style="background:#fff"><h3>أبيض<br><span class="lbl" style="opacity:.6">White</span></h3><dl><dt>HEX</dt><dd>#FFFFFF</dd></dl></div>
+    </div>
+    <div class="hz" style="margin-top:16px"></div>
+    <p style="margin-top:14px;color:var(--grey)">ألوان الطرق والسلامة: الكحلي يعطي الثقة والثبات، والأصفر يُرى من بعيد على الطريق وفي الإعلانات. الشريط المخطط (أصفر × كحلي) يُستخدم كإطار في الأغلفة ومؤخرة الشاحنات فقط.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sh"><span class="n">04</span><h2>الخطوط<span class="lbl">Typography</span></h2></div>
+    <div class="type">
+      <div class="spec" style="background:var(--concrete)"><span class="lbl" style="color:var(--grey)">Arabic</span><div class="big" style="font-weight:900;margin-top:10px">نقل</div><h3 style="font-size:26px;margin-top:10px;font-weight:800">Cairo</h3><p style="color:var(--grey)">خط عربي عريض وثقيل، يملأ المساحة بقوة على الشاحنات واللوحات. الأوزان: 600 · 800 · 900.</p></div>
+      <div class="spec" style="background:var(--navy);color:#fff"><span class="lbl" style="opacity:.6">Latin</span><div class="big lat" style="margin-top:10px;text-align:right;color:var(--yellow)">RUH→</div><h3 style="font-size:26px;margin-top:10px;font-weight:800">Barlow Condensed Italic</h3><p style="opacity:.7">مستوحى من لوحات الطرق السريعة. مكثّف ومائل للأمام، للإنجليزي والأرقام وأكواد المدن.</p></div>
+    </div>
+    <div class="spec scale" style="background:var(--concrete)">
+      <div><span class="lbl">Display 80/900</span><span style="font-size:58px;font-weight:900;line-height:1.1">من الرياض، لكل مكان.</span></div>
+      <div><span class="lbl">Heading 32/800</span><span style="font-size:32px;font-weight:800">نقل لكل مدن المملكة ودول الخليج</span></div>
+      <div><span class="lbl">Body 17/500</span><span style="font-size:17px;font-weight:500">تشغيل 24/7، وتتبع GPS مباشر لكل مركبة، وأسعار واضحة بالكيلومتر أو بالعقد.</span></div>
+      <div><span class="lbl">Codes 34/800i</span><span class="lat" style="font-size:34px;text-align:right">RUH → DMM · 24/7 · GPS</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section>
+  <div class="wrap">
+    <div class="sh"><span class="n">05</span><h2>لغة الرسوم<span class="lbl">Graphic language</span></h2></div>
+    <p class="lead" style="margin-bottom:28px">ثلاثة عناصر من عالم الشحن: <b>السهم المزدوج</b> للحركة، و<b>الشريط المخطط</b> للسلامة، و<b>بطاقة الشحنة</b> (بوليصة بخانات وباركود) لعرض المعلومات في الإعلانات والموقع.</p>
+    <div class="kit">
+      <div class="label">
+        <div class="r" style="grid-template-columns:1fr auto;background:var(--navy);color:#fff"><div class="c" style="border-color:var(--navy)"><div class="wm"><svg class="mk" width="40" height="34" style="color:var(--yellow);fill:currentColor"><use href="#mr"/></svg><span class="lat" style="font-size:28px">REGALEX</span></div></div><div class="c" style="background:var(--yellow);color:var(--navy);display:grid;place-items:center"><span class="lat" style="font-size:26px">24/7</span></div></div>
+        <div class="r" style="grid-template-columns:1fr 1fr"><div class="c"><small>From</small><span class="v">Riyadh · RUH</span></div><div class="c"><small>To</small><span class="v">Dammam · DMM</span></div></div>
+        <div class="r" style="grid-template-columns:1fr 1fr 1fr"><div class="c"><small>Vehicle</small><span class="v" style="font-size:22px">Dry van</span></div><div class="c"><small>Tracking</small><span class="v" style="font-size:22px">GPS live</span></div><div class="c"><small>Rate</small><span class="v" style="font-size:22px">Per km</span></div></div>
+        <div class="r"><div class="c" style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+          <svg width="220" height="46" viewBox="0 0 220 46" aria-hidden="true"><g fill="#0B1630"><rect x="0" width="4" height="46"/><rect x="7" width="2" height="46"/><rect x="12" width="6" height="46"/><rect x="21" width="2" height="46"/><rect x="26" width="4" height="46"/><rect x="33" width="2" height="46"/><rect x="38" width="8" height="46"/><rect x="49" width="2" height="46"/><rect x="54" width="4" height="46"/><rect x="61" width="6" height="46"/><rect x="70" width="2" height="46"/><rect x="75" width="2" height="46"/><rect x="80" width="6" height="46"/><rect x="89" width="4" height="46"/><rect x="96" width="2" height="46"/><rect x="101" width="8" height="46"/><rect x="112" width="2" height="46"/><rect x="117" width="4" height="46"/><rect x="124" width="2" height="46"/><rect x="129" width="6" height="46"/><rect x="138" width="4" height="46"/><rect x="145" width="2" height="46"/><rect x="150" width="8" height="46"/><rect x="161" width="2" height="46"/><rect x="166" width="4" height="46"/><rect x="173" width="6" height="46"/><rect x="182" width="2" height="46"/><rect x="187" width="4" height="46"/><rect x="194" width="2" height="46"/><rect x="199" width="6" height="46"/><rect x="208" width="2" height="46"/><rect x="213" width="7" height="46"/></g></svg>
+          <span class="lat" style="font-size:26px">REGALEX.SA</span></div></div>
+      </div>
+      <div style="background:var(--navy);position:relative;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:space-between;padding:32px;color:#fff">
+        <svg viewBox="0 0 400 120" width="100%" aria-hidden="true" style="direction:ltr"><g fill="#FFC400"><path d="M0 0h40l60 60-60 60H0l60-60z"/><path d="M80 0h40l60 60-60 60H80l60-60z" opacity=".55"/><path d="M160 0h40l60 60-60 60h-40l60-60z" opacity=".25"/></g></svg>
+        <div><div style="font-size:34px;font-weight:900;line-height:1.15">السهم المزدوج</div><p style="opacity:.7">يقود العين للأمام: في الأزرار، بين المدن، وعلى جوانب الشاحنات.</p></div>
+        <div class="hz" style="position:absolute;bottom:0;left:0;right:0;height:12px"></div>
+      </div>
+    </div>
+    <div class="icons">
+      <div class="ic"><svg viewBox="0 0 44 44"><path d="M2 12h26v18H2zM28 18h8l6 6v6H28z" fill="#0B1630"/><circle cx="10" cy="33" r="4.5" fill="#FFC400" stroke="#0B1630" stroke-width="2"/><circle cx="34" cy="33" r="4.5" fill="#FFC400" stroke="#0B1630" stroke-width="2"/></svg>نقل بين المدن</div>
+      <div class="ic"><svg viewBox="0 0 44 44"><path d="M4 30L40 13l-2-5-14 6-12-5-4 2 9 8-9 4-5-2-3 3z" fill="#0B1630"/><rect x="4" y="36" width="36" height="4" fill="#FFC400"/></svg>شحنات المطار</div>
+      <div class="ic"><svg viewBox="0 0 44 44"><rect x="4" y="8" width="36" height="30" fill="#0B1630"/><path d="M22 13v20M13 17l18 12M31 17L13 29" stroke="#FFC400" stroke-width="3"/></svg>نقل مبرّد</div>
+      <div class="ic"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="#0B1630"/><path d="M4 22h36M22 4c6 5 8 11 8 18s-2 13-8 18c-6-5-8-11-8-18s2-13 8-18z" stroke="#FFC400" stroke-width="2.5" fill="none"/></svg>نقل للخليج</div>
+      <div class="ic"><svg viewBox="0 0 44 44"><path d="M22 41S8 27 8 17a14 14 0 0 1 28 0c0 10-14 24-14 24z" fill="#0B1630"/><circle cx="22" cy="17" r="5.5" fill="#FFC400"/></svg>تتبع GPS</div>
+      <div class="ic"><svg viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="#0B1630"/><path d="M22 10v12l8 5" stroke="#FFC400" stroke-width="3.5" fill="none"/></svg>24/7</div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sh"><span class="n">06</span><h2>النبرة والشعار اللفظي<span class="lbl">Voice &amp; tagline</span></h2></div>
+    <div class="voice">
+      <div class="tag"><div class="a">من الرياض،<br>لكل مكان.</div><div class="lat">From Riyadh. Everywhere.</div></div>
+      <div class="do"><h4>نتكلم هكذا</h4><ul><li>مثل غرفة العمليات: واضح، سريع، ومعلومة مفيدة.</li><li>المدن والمركبات بأسمائها: «تريلة جاف، الرياض ← الدمام».</li><li>نبرز ما يميزنا فعلاً: 24/7، تتبع GPS، كل المملكة والخليج.</li><li>العربية أولاً.</li></ul></div>
+      <div class="do dont"><h4>ولا نقول</h4><ul><li>«الأول» أو «الأسرع في المملكة» بلا دليل.</li><li>كلمات عامة: «حلول متكاملة رائدة».</li><li>وعود زمنية لا نضمنها في العقد.</li><li>نصوص طويلة على الشاحنات والإعلانات.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section>
+  <div class="wrap">
+    <div class="sh"><span class="n">07</span><h2>التطبيقات<span class="lbl">Applications</span></h2></div>
+    <div class="apps">
+      <div class="app wide"><span class="lbl">Fleet livery — curtain-side trailer</span>
+        <svg viewBox="0 0 1000 340" width="100%" style="max-width:980px;direction:ltr">
+          <defs>
+            <clipPath id="trl"><rect x="40" y="50" width="660" height="220"/></clipPath>
+            <pattern id="haz" width="28" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="14" height="28" fill="#FFC400"/><rect x="14" width="14" height="28" fill="#0B1630"/></pattern>
+          </defs>
+          <rect x="40" y="306" width="920" height="6" fill="#0B1630" opacity=".15"/>
+          <rect x="40" y="50" width="660" height="220" fill="#0B1630"/>
+          <g clip-path="url(#trl)">
+            <path d="M440 50h70l110 110-110 110h-70l110-110z" fill="#FFC400"/>
+            <path d="M560 50h70l110 110-110 110h-70l110-110z" fill="#FFC400" opacity=".45"/>
+            <rect x="40" y="50" width="30" height="220" fill="url(#haz)"/>
+          </g>
+          <g transform="translate(96 88)"><svg width="84" height="72" style="color:#FFC400;fill:#FFC400"><use href="#mr"/></svg></g>
+          <text x="190" y="150" font-family="Barlow Condensed" font-style="italic" font-weight="800" font-size="76" fill="#fff">REGALEX</text>
+          <text x="420" y="205" font-family="Cairo" font-weight="900" font-size="34" fill="#fff" text-anchor="end">من الرياض، لكل مكان</text>
+          <text x="96" y="244" font-family="Barlow Condensed" font-style="italic" font-weight="700" font-size="22" fill="#FFC400" letter-spacing="1">24/7 · GPS · KSA + GCC · 053 997 7551</text>
+          <path d="M716 112h112l78 72v86H716z" fill="#fff" stroke="#0B1630" stroke-width="3"/>
+          <path d="M734 130h84l56 54H734z" fill="#0B1630" opacity=".9"/>
+          <rect x="716" y="226" width="190" height="44" fill="#0B1630"/>
+          <rect x="716" y="220" width="190" height="6" fill="#FFC400"/>
+          <g transform="translate(744 190)"><svg width="34" height="29" style="fill:#0B1630"><use href="#mr"/></svg></g>
+          <g fill="#0B1630"><circle cx="140" cy="282" r="28"/><circle cx="206" cy="282" r="28"/><circle cx="560" cy="282" r="28"/><circle cx="626" cy="282" r="28"/><circle cx="790" cy="282" r="28"/><circle cx="870" cy="282" r="28"/></g>
+          <g fill="#FFC400"><circle cx="140" cy="282" r="9"/><circle cx="206" cy="282" r="9"/><circle cx="560" cy="282" r="9"/><circle cx="626" cy="282" r="9"/><circle cx="790" cy="282" r="9"/><circle cx="870" cy="282" r="9"/></g>
+        </svg></div>
+      <div class="app"><span class="lbl">Business card</span>
+        <div class="cards">
+          <div class="card" style="background:var(--navy);color:#fff;padding:24px"><div class="wm"><svg class="mk" width="46" height="40" style="color:var(--yellow);fill:currentColor"><use href="#mr"/></svg><span class="lat" style="font-size:30px">REGALEX</span></div><div style="font-weight:800;font-size:16px">من الرياض، لكل مكان.</div><div class="hz" style="position:absolute;bottom:0;left:0;right:0;height:10px"></div></div>
+          <div class="card" style="background:#fff;padding:24px"><div><div style="font-weight:800;font-size:19px">اسم الموظف</div><div style="color:var(--grey);font-size:13px">مدير العمليات</div></div><div style="font-family:var(--lat);font-weight:600;font-size:16px;line-height:1.45;direction:ltr;text-align:left">+966 53 997 7551<br>Info@regalex.sa<br><span style="background:var(--yellow);padding:0 6px;font-style:italic;font-weight:800">REGALEX.SA</span></div></div>
+        </div></div>
+      <div class="app" style="background:var(--navy)"><span class="lbl" style="color:#8a93a8">Social post</span>
+        <div style="width:300px;aspect-ratio:1;background:var(--yellow);color:var(--navy);padding:24px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden">
+          <span class="lat" style="font-size:30px;line-height:1">RUH → GCC</span>
+          <div style="font-size:36px;font-weight:900;line-height:1.15">شحنتك<br>للخليج؟<br>جاهزين 24/7</div>
+          <div style="display:flex;justify-content:space-between;align-items:end"><svg class="mk" width="40" height="34" style="fill:var(--navy)"><use href="#mr"/></svg><span class="lat" style="font-size:18px">REGALEX.SA</span></div>
+        </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- compare -->
+<section style="background:var(--white)">
+  <div class="wrap">
+    <div class="sh"><span class="n">A/B/C</span><h2>المقارنة بالخيارين السابقين<span class="lbl">Options compared</span></h2></div>
+    <div class="compare" style="background:var(--concrete)">
+      <div><h4>الفكرة</h4><p>(<bdi>A</bdi>) حرف <bdi>R</bdi> كمسار<br>(<bdi>B</bdi>) حرف <bdi>X</bdi> كتقاطع<br>(<bdi>C</bdi>) حرف <bdi>R</bdi> مائل كسهم وسرعة</p></div>
+      <div><h4>الإحساس</h4><p>(<bdi>A</bdi>) هادئ وتقني<br>(<bdi>B</bdi>) جريء وتجاري<br>(<bdi>C</bdi>) نقل وشحن من أول نظرة</p></div>
+      <div><h4>اللون</h4><p>(<bdi>A</bdi>) حبر وأخضر ليموني<br>(<bdi>B</bdi>) كوبالت<br>(<bdi>C</bdi>) كحلي وأصفر الإشارة</p></div>
+      <div><h4>الشعار اللفظي</h4><p>(<bdi>A</bdi>) نوصلها كما وعدنا<br>(<bdi>B</bdi>) الطريق علينا<br>(<bdi>C</bdi>) من الرياض، لكل مكان</p></div>
+    </div>
+  </div>
+</section>
+<div class="hz"></div>
+<footer><div class="wrap"><div class="wm"><svg class="mk" width="40" height="34" style="fill:var(--yellow)"><use href="#mr"/></svg><span class="lat" style="font-size:24px">REGALEX</span></div><span class="lbl" style="opacity:.6">Identity by Vigil · Option C · 2026</span></div></footer>
+</body>
+</html>

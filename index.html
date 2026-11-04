@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ريجالكس | Regalex — من الرياض، لكل مكان</title>
+<meta name="description" content="ريجالكس: شركة نقل بضائع من الرياض إلى جميع مدن المملكة ودول الخليج. تشغيل 24/7، تتبع GPS مباشر، وأسعار واضحة بالكيلومتر أو بالعقد.">
+<meta name="theme-color" content="#0B1630">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 48'%3E%3Crect width='56' height='48' rx='8' fill='%230B1630'/%3E%3Cg fill='%23FFC400' transform='translate(10 0) skewX(-12)'%3E%3Crect x='2' y='9' width='9' height='4.5'/%3E%3Crect x='5' y='18' width='6' height='4.5'/%3E%3Crect x='14' y='6' width='9' height='36'/%3E%3Cpath fill-rule='evenodd' d='M23 6h11l9 10-9 10H23zM23 13h8l2.6 3-2.6 3h-8z'/%3E%3Cpath d='M27 26h10l10 16H37z'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1630;--navy-2:#13234A;--navy-3:#1B2F5E;--deep:#070F22;--yellow:#FFC400;--yellow-2:#FFD43B;
+  --white:#fff;--concrete:#EEF0F3;--grey:#6A7385;--line:rgba(11,22,48,.12);--line-d:rgba(255,255,255,.12);
+  --ar:"Cairo",system-ui,sans-serif;--lat:"Barlow Condensed",sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ar);background:var(--navy);color:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--yellow);color:var(--navy)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.lat{font-family:var(--lat);font-style:italic;font-weight:800;text-transform:uppercase;direction:ltr;unicode-bidi:isolate}
+.tag{display:inline-flex;align-items:center;gap:8px;background:var(--yellow);color:var(--navy);font-weight:800;font-size:14px;padding:4px 14px 3px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.hz{height:14px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 14px,var(--navy) 14px 28px);background-size:40px 40px;animation:hz 1.2s linear infinite}
+@keyframes hz{to{background-position:40px 0}}
+svg.mk{display:block;flex:none}
+svg{direction:ltr}
+
+/* ---------- loader ---------- */
+#loader{position:fixed;inset:0;z-index:200;background:var(--navy);display:grid;place-items:center;animation:loaderOut .5s var(--ease) 1.5s forwards}
+#loader .in{display:flex;flex-direction:column;align-items:center;gap:22px}
+#loader svg{animation:drive 1s var(--ease) both}
+#loader .bar{width:220px;height:10px;background:var(--navy-2);overflow:hidden}
+#loader .bar i{display:block;height:100%;background:repeating-linear-gradient(-45deg,var(--yellow) 0 10px,var(--navy) 10px 20px);transform-origin:right;animation:fill 1.3s var(--ease) forwards;transform:scaleX(0)}
+@keyframes fill{to{transform:scaleX(1)}}
+@keyframes drive{from{transform:translateX(160px);opacity:0}to{transform:none;opacity:1}}
+@keyframes loaderOut{to{transform:translateY(-100%);visibility:hidden}}
+
+/* ---------- top progress ---------- */
+#prog{position:fixed;top:0;inset-inline:0;height:4px;z-index:120}
+#prog i{display:block;height:100%;width:0;background:var(--yellow)}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;inset-inline:0;z-index:100;transition:background .35s,transform .35s,border-color .35s;border-bottom:1px solid transparent}
+header.solid{background:rgba(11,22,48,.86);backdrop-filter:blur(14px);border-color:var(--line-d)}
+header.hide{transform:translateY(-100%)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:78px;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;direction:ltr}
+.logo b{font-family:var(--lat);font-style:italic;font-weight:800;font-size:28px;letter-spacing:.01em}
+nav{display:flex;gap:30px;font-size:15px;font-weight:600}
+nav a{position:relative;opacity:.8;transition:opacity .2s}
+nav a::after{content:"";position:absolute;inset-inline:0;bottom:-6px;height:3px;background:var(--yellow);transform:scaleX(0);transition:transform .3s var(--ease);transform-origin:right}
+nav a:hover{opacity:1}nav a:hover::after{transform:scaleX(1)}
+.hdr-end{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 28px;font-family:inherit;font-weight:800;font-size:16px;border:0;cursor:pointer;position:relative;overflow:hidden;clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%);transition:transform .2s var(--ease),color .3s}
+.btn:active{transform:scale(.97)}
+.btn span,.btn svg{position:relative;z-index:1}
+.btn::before{content:"";position:absolute;inset:0;transform:translateX(101%);transition:transform .4s var(--ease)}
+.btn:hover::before{transform:none}
+.b-y{background:var(--yellow);color:var(--navy)}.b-y::before{background:var(--white)}
+.b-o{background:transparent;color:var(--white);box-shadow:inset 0 0 0 2px var(--line-d)}.b-o::before{background:var(--white)}.b-o:hover{color:var(--navy)}
+.b-n{background:var(--navy);color:var(--white)}.b-n::before{background:var(--white)}.b-n:hover{color:var(--navy)}
+.btn .arr{transition:transform .3s var(--ease)}.btn:hover .arr{transform:translateX(-5px)}
+html[dir=ltr] .btn .arr{transform:scaleX(-1)}html[dir=ltr] .btn:hover .arr{transform:scaleX(-1) translateX(-5px)}
+.lang{height:42px;min-width:46px;border:2px solid var(--line-d);background:none;color:#fff;font-family:var(--lat);font-weight:700;font-size:15px;cursor:pointer}
+.hdr-end .btn{height:44px;padding:0 20px;font-size:14px}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding-top:110px}
+.chev-bg{position:absolute;inset:0;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cpath d='M60 0L25 45l35 45H42L7 45 42 0z' fill='%23fff'/%3E%3C/svg%3E");animation:chev 6s linear infinite}
+@keyframes chev{to{background-position:-90px 0}}
+.hero-in{position:relative;z-index:2;display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;padding-bottom:30px}
+.hero h1{font-size:clamp(52px,7.6vw,124px);font-weight:900;line-height:1.08;letter-spacing:-.01em;margin-top:22px}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln>span{display:inline-block;transform:translateY(110%);animation:up .9s var(--ease) 1.55s forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:1.7s;color:var(--yellow)}
+@keyframes up{to{transform:none}}
+.fade{opacity:0;transform:translateY(16px);animation:fadeUp .8s var(--ease) forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.hero .sub{font-size:19px;max-width:48ch;color:rgba(255,255,255,.78);margin-top:18px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-side{display:grid;gap:12px;justify-items:end}
+.chip{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid var(--line-d);backdrop-filter:blur(6px);padding:12px 16px;font-weight:700;width:max-content;max-width:100%}
+.chip b{font-family:var(--lat);font-style:italic;font-size:24px;color:var(--yellow);line-height:1}
+.chip .dot{width:10px;height:10px;border-radius:50%;background:#3BE37A;animation:ping 1.6s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(59,227,122,.6)}70%{box-shadow:0 0 0 12px rgba(59,227,122,0)}100%{box-shadow:0 0 0 0 rgba(59,227,122,0)}}
+
+/* scene */
+.scene{position:relative;height:clamp(230px,30vw,340px);z-index:1}
+.sky{position:absolute;inset-inline:0;bottom:84px;height:170px;overflow:hidden;direction:ltr}
+.sky .track{display:flex;width:max-content;height:100%;animation:sky 60s linear infinite}
+.sky svg{height:100%;width:auto;flex:none}
+@keyframes sky{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.road{position:absolute;inset-inline:0;bottom:0;height:90px;background:#060D1E;border-top:4px solid var(--navy-3)}
+.road::before{content:"";position:absolute;inset-inline:0;top:40px;height:6px;background:repeating-linear-gradient(90deg,var(--yellow) 0 60px,transparent 60px 120px);animation:lane .45s linear infinite}
+@keyframes lane{to{background-position:120px 0}}
+.road::after{content:"";position:absolute;inset-inline:0;bottom:0;height:10px;background:repeating-linear-gradient(-45deg,var(--yellow) 0 10px,#060D1E 10px 20px);opacity:.8}
+.truck-w{position:absolute;bottom:52px;left:8%;width:min(560px,62vw)}
+.truck{width:100%;display:block;animation:truckIn 2.2s var(--ease) 1.4s both}
+.truck .body{animation:bump .35s ease-in-out infinite alternate}
+@keyframes truckIn{from{transform:translateX(110vw)}to{transform:none}}
+@keyframes bump{to{transform:translateY(-2px)}}
+.spin{transform-box:fill-box;transform-origin:center;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(-360deg)}}
+.wind{position:absolute;bottom:38%;left:100%;width:180px;height:80px;pointer-events:none;animation:truckIn 2.2s var(--ease) 1.4s both}
+.wind i{position:absolute;height:3px;background:linear-gradient(90deg,rgba(255,255,255,.5),transparent);animation:wind 1s linear infinite}
+.wind i:nth-child(1){top:10px;width:120px}.wind i:nth-child(2){top:34px;width:160px;animation-delay:.3s}.wind i:nth-child(3){top:58px;width:90px;animation-delay:.6s}
+@keyframes wind{from{transform:translateX(-20px);opacity:0}30%{opacity:1}to{transform:translateX(80px);opacity:0}}
+
+/* ---------- ticker ---------- */
+.ticker{background:var(--yellow);color:var(--navy);overflow:hidden;border-block:3px solid var(--navy);position:relative;z-index:3;direction:ltr}
+.ticker .t{display:flex;width:max-content;animation:tick 40s linear infinite}
+.ticker:hover .t{animation-play-state:paused}
+.ticker span{display:flex;align-items:center;gap:26px;padding:16px 13px;font-weight:900;font-size:24px;white-space:nowrap}
+.ticker span::after{content:"";width:22px;height:22px;background:var(--navy);clip-path:polygon(40% 0,100% 50%,40% 100%,0 100%,60% 50%,0 0);transform:scaleX(-1)}
+@keyframes tick{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+/* ---------- stats ---------- */
+.stats{background:var(--navy);padding:90px 0 50px}
+.stats .g{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-d)}
+.stat{padding:34px 26px 10px;border-inline-start:1px solid var(--line-d)}
+.stat:first-child{border:0;padding-inline-start:0}
+.stat .n{font-family:var(--lat);font-style:italic;font-weight:900;font-size:clamp(64px,7vw,104px);line-height:.9;color:var(--yellow);direction:ltr;display:block;text-align:start}
+.stat p{margin-top:10px;font-weight:700;opacity:.85}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:130px 0}
+.light{background:var(--concrete);color:var(--navy)}
+.white{background:#fff;color:var(--navy)}
+.head{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:60px;flex-wrap:wrap}
+.head h2{font-size:clamp(40px,5.6vw,80px);font-weight:900;line-height:1.12;max-width:15ch;margin-top:18px}
+.head h2 em{font-style:normal;color:var(--yellow)}
+.light .head h2 em,.white .head h2 em{color:inherit;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:.16em;text-underline-offset:.1em;text-decoration-skip-ink:none}
+.head p{max-width:40ch;font-size:18px;opacity:.75}
+
+/* services */
+.svcs{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc{background:#fff;border:1px solid var(--line);padding:28px 24px 30px;position:relative;overflow:hidden;min-height:250px;display:flex;flex-direction:column;gap:12px;transition:color .35s,transform .35s var(--ease),box-shadow .35s}
+.svc::before{content:"";position:absolute;inset:0;background:var(--navy);transform:translateY(101%);transition:transform .45s var(--ease)}
+.svc>*{position:relative}
+.svc .no{font-family:var(--lat);font-style:italic;font-weight:800;font-size:16px;color:var(--grey);direction:ltr;text-align:left;transition:color .3s}
+.svc svg{width:52px;height:52px;transition:transform .45s var(--ease)}
+.svc h3{font-size:21px;font-weight:800;line-height:1.3;margin-top:auto}
+.svc p{font-size:14.5px;color:var(--grey);transition:color .3s}
+.svc:hover{color:#fff;box-shadow:0 30px 60px -30px rgba(11,22,48,.6)}
+.svc:hover::before{transform:none}
+.svc:hover .no{color:var(--yellow)}
+.svc:hover p{color:rgba(255,255,255,.7)}
+.svc:hover svg{transform:translateX(-8px) scale(1.08)}
+.svc .ic-a{fill:var(--navy);transition:fill .3s}
+.svc:hover .ic-a{fill:var(--yellow)}
+.svc .ic-b{fill:var(--yellow)}
+.svc:hover .ic-b{fill:#fff}
+.price{margin-top:14px;background:var(--yellow);color:var(--navy);padding:28px 32px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.price strong{font-size:clamp(20px,2.4vw,28px);font-weight:900;line-height:1.3}
+.price small{display:block;font-size:15px;font-weight:600;opacity:.8}
+
+/* fleet */
+.fleet{background:var(--navy);overflow:hidden}
+.fleet .intro{padding:130px 0 30px}
+.f-track{display:flex;gap:28px;padding:30px 32px 130px;width:max-content}
+.f-card{width:min(78vw,860px);flex:none;background:var(--navy-2);border:1px solid var(--line-d);position:relative;overflow:hidden;padding:40px 44px 36px;display:grid;grid-template-rows:auto 1fr auto;min-height:520px}
+.f-card .num{position:absolute;inset-inline-end:28px;top:10px;font-family:var(--lat);font-style:italic;font-weight:900;font-size:200px;line-height:1;color:rgba(255,255,255,.05);direction:ltr}
+.f-card h3{font-size:clamp(32px,3.6vw,52px);font-weight:900;line-height:1.15}
+.f-card h3 .lat{display:block;font-size:22px;color:var(--yellow);margin-top:6px;text-align:start}
+.f-card .vis{display:flex;align-items:center;justify-content:center;padding:18px 0;position:relative}
+.f-card .vis::after{content:"";position:absolute;inset-inline:0;bottom:22px;height:4px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.25) 0 30px,transparent 30px 60px)}
+.f-card .vis svg{width:100%;max-width:640px;position:relative;z-index:1}
+.f-card .specs{display:flex;gap:10px;flex-wrap:wrap}
+.f-card .specs span{border:1px solid var(--line-d);padding:6px 14px;font-weight:700;font-size:14px}
+.f-card .specs span.y{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}
+.f-card.end{background:var(--yellow);color:var(--navy);display:flex;flex-direction:column;justify-content:center;gap:24px;width:min(60vw,520px)}
+.f-card.end h3{font-size:clamp(36px,4vw,58px)}
+.snow{transform-box:fill-box;transform-origin:center;animation:snow 8s linear infinite}
+@keyframes snow{to{transform:rotate(360deg)}}
+
+/* coverage */
+.cov{background:var(--deep)}
+.map-wrap{display:grid;grid-template-columns:1.4fr .6fr;gap:30px;align-items:center}
+.map svg{width:100%;height:auto;display:block;direction:ltr;overflow:visible}
+.map .land{fill:var(--navy-2);stroke:rgba(255,255,255,.25);stroke-width:1.5}
+.map .rt{fill:none;stroke:var(--yellow);stroke-width:2.2;stroke-linecap:round}
+.map .rt.gcc{stroke-dasharray:4 7;stroke:#fff;opacity:.7}
+.map .city circle{fill:#fff}
+.map .city text{fill:#fff;font-family:"Cairo";font-weight:700;font-size:14px}
+.map .city.gc text{fill:var(--yellow)}
+.map .city.gc circle{fill:var(--deep);stroke:var(--yellow);stroke-width:2.5}
+.map .hq circle.c{fill:var(--yellow)}
+.map .pulse{fill:none;stroke:var(--yellow);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:pulse 2s ease-out infinite}
+@keyframes pulse{from{transform:scale(.4);opacity:1}to{transform:scale(2.6);opacity:0}}
+.legend{display:grid;gap:14px}
+.lg{border:1px solid var(--line-d);padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:center;transition:background .3s,transform .3s var(--ease)}
+.lg:hover{background:var(--navy-2);transform:translateX(-6px)}
+.lg .code{font-family:var(--lat);font-style:italic;font-weight:900;font-size:34px;grid-row:span 2;color:var(--yellow);direction:ltr;min-width:72px}
+.lg b{font-size:19px;font-weight:800}.lg span{font-size:14px;opacity:.7}
+.lg.y{background:var(--yellow);color:var(--navy);border-color:var(--yellow)}.lg.y .code{color:var(--navy)}
+
+/* why */
+.why{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px}
+.why .stick{position:sticky;top:120px;align-self:start}
+.why .stick h2{font-size:clamp(40px,5.6vw,80px);font-weight:900;line-height:1.12;margin-top:18px}
+.why .stick p{font-size:18px;color:var(--grey);margin-top:16px;max-width:36ch}
+.roadv{position:relative;padding-inline-start:96px}
+.roadv .lane{position:absolute;inset-inline-start:28px;top:0;bottom:0;width:44px;background:var(--navy)}
+.roadv .lane::before{content:"";position:absolute;inset-inline-start:20px;top:12px;bottom:12px;width:4px;background:repeating-linear-gradient(180deg,var(--yellow) 0 22px,transparent 22px 44px)}
+.roadv .mini{position:absolute;inset-inline-start:24px;top:0;width:52px;z-index:2;filter:drop-shadow(0 10px 14px rgba(11,22,48,.35))}
+.ms{padding:36px 0;border-bottom:1px solid var(--line);position:relative;opacity:.3;transition:opacity .5s}
+.ms.on{opacity:1}
+.ms::before{content:"";position:absolute;inset-inline-start:-79px;top:46px;width:16px;height:16px;border-radius:50%;background:var(--concrete);border:4px solid var(--navy);transition:background .3s;z-index:1}
+.ms.on::before{background:var(--yellow)}
+.ms .k{font-family:var(--lat);font-style:italic;font-weight:900;font-size:22px;color:var(--grey);direction:ltr;display:block;text-align:start}
+.ms h3{font-size:clamp(26px,2.8vw,36px);font-weight:900;line-height:1.25}
+.ms p{color:var(--grey);font-size:17px;margin-top:6px;max-width:46ch}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border:2px solid var(--navy)}
+.step{padding:30px 26px 34px;border-inline-start:2px dashed rgba(11,22,48,.35)}
+.step:first-child{border-inline-start:0}
+.step .n{width:46px;height:46px;background:var(--navy);color:var(--yellow);display:grid;place-items:center;font-family:var(--lat);font-style:italic;font-weight:900;font-size:24px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);margin-bottom:22px}
+.step h3{font-size:22px;font-weight:900}
+.step p{color:var(--grey);font-size:15px;margin-top:4px}
+.steps-top{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff;padding:14px 26px}
+.barcode{display:block;height:34px;width:200px;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 5px,#fff 5px 9px,transparent 9px 11px,#fff 11px 12px,transparent 12px 16px)}
+
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:start}
+.about .big{font-size:clamp(26px,3vw,40px);font-weight:800;line-height:1.55}
+.about .big em{font-style:normal;text-decoration:underline;text-decoration-color:var(--yellow);text-decoration-thickness:.2em;text-underline-offset:.08em;text-decoration-skip-ink:none}
+.vm{display:grid;gap:14px}
+.vm>div{border:2px solid var(--navy);padding:24px 26px}
+.vm h3{font-size:20px;font-weight:900;display:flex;gap:10px;align-items:center}
+.vm h3::before{content:"";width:14px;height:14px;background:var(--yellow);clip-path:polygon(40% 0,100% 50%,40% 100%,0 100%,60% 50%,0 0);transform:scaleX(-1)}
+.vals{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.vals span{background:var(--navy);color:#fff;padding:5px 14px;font-weight:700;font-size:14px}
+
+/* quote */
+.quote{background:var(--yellow);color:var(--navy);overflow:hidden}
+.quote .g{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.quote h2{font-size:clamp(44px,6.4vw,96px);font-weight:900;line-height:1.1}
+.quote .lead{font-size:19px;font-weight:600;margin-top:14px;max-width:36ch}
+.qform{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:30px}
+.qform label{display:grid;gap:6px;font-weight:800;font-size:14px}
+.qform .full{grid-column:1/-1}
+.qform input,.qform select,.qform textarea{font:inherit;font-size:16px;font-weight:600;color:var(--navy);background:#fff;border:2px solid var(--navy);padding:13px 14px;width:100%;border-radius:0}
+.qform input:focus,.qform select:focus,.qform textarea:focus{outline:4px solid var(--navy);outline-offset:0}
+.qform textarea{min-height:90px;resize:vertical}
+.qform .btn{grid-column:1/-1;justify-content:center;height:60px;font-size:18px}
+.lbl-wrap{position:sticky;top:120px;padding-top:20px}
+.label{background:#fff;border:3px solid var(--navy);box-shadow:16px 16px 0 var(--navy);transform:rotate(-2deg);transition:transform .5s var(--ease);position:relative}
+.label:hover{transform:rotate(0)}
+.label .r{display:grid;border-bottom:3px solid var(--navy)}
+.label .r:last-child{border:0}
+.label .c{padding:14px 18px;border-inline-start:3px solid var(--navy);min-width:0}
+.label .c:first-child{border-inline-start:0}
+.label small{display:block;font-family:var(--lat);font-weight:700;letter-spacing:.08em;font-size:13px;color:var(--grey);text-transform:uppercase;direction:ltr;text-align:start}
+.label .v{font-weight:900;font-size:clamp(20px,2.4vw,30px);line-height:1.25;overflow-wrap:anywhere;transition:color .2s}
+.label .v.flash{color:#C79800}
+.label .hd{background:var(--navy);color:#fff;display:flex;justify-content:space-between;align-items:center;padding:14px 18px}
+.label .arrow{display:grid;place-items:center;font-family:var(--lat);font-style:italic;font-weight:900;font-size:40px;padding:0 10px}
+.stamp{position:absolute;top:-62px;left:18px;z-index:2;width:120px;height:120px;border-radius:50%;border:4px solid #D7263D;color:#D7263D;display:grid;place-items:center;text-align:center;font-weight:900;font-size:15px;line-height:1.2;transform:rotate(-14deg);background:rgba(255,255,255,.9);visibility:hidden}
+.stamp.go{visibility:visible;animation:stamp .5s var(--ease) both}
+@keyframes stamp{from{transform:rotate(-14deg) scale(2.2);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:1}}
+
+/* contact + footer */
+.contact{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-d)}
+.contact>*{padding:30px 24px;border-inline-start:1px solid var(--line-d);display:grid;gap:4px;transition:background .3s}
+.contact>*:first-child{border-inline-start:0}
+.contact a:hover{background:var(--navy-2)}
+.contact small{opacity:.6;font-weight:700;font-size:14px}
+.contact b{font-size:19px;direction:ltr;text-align:start;unicode-bidi:isolate}
+html[dir=rtl] .contact b{text-align:right}
+.mega{overflow:hidden;padding:30px 0 0;border-top:1px solid var(--line-d);direction:ltr}
+.mega .t{display:flex;width:max-content;animation:tick 30s linear infinite}
+.mega span{font-family:var(--lat);font-style:italic;font-weight:900;font-size:clamp(90px,16vw,240px);line-height:.85;padding:0 30px;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.25);white-space:nowrap}
+.mega span:nth-child(odd){color:var(--yellow);-webkit-text-stroke:0}
+footer{background:var(--deep);padding:28px 0;font-size:14px;color:rgba(255,255,255,.6)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+.wa{position:fixed;bottom:22px;inset-inline-start:22px;z-index:90;width:62px;height:62px;border-radius:50%;background:#25D366;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(0,0,0,.5);animation:waIn .6s var(--ease) 3s both}
+.wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:3px solid #25D366;animation:pulse 2s ease-out infinite}
+@keyframes waIn{from{transform:scale(0)}to{transform:none}}
+.mag{transition:transform .25s var(--ease),color .3s}
+
+@media (min-width:1001px){.f-pin{height:100vh;display:flex;align-items:center}.f-track{padding:0 32px}}
+@media (max-width:1000px){
+  .wrap{padding:0 18px}
+  nav,.hdr-end .btn{display:none}
+  .hero-in{grid-template-columns:1fr}
+  .hero-side{justify-items:start}
+  .stats .g{grid-template-columns:1fr 1fr}
+  .stat:nth-child(3){border-inline-start:0;padding-inline-start:0}
+  .svcs{grid-template-columns:1fr 1fr}
+  .map-wrap,.why,.about,.quote .g{grid-template-columns:1fr}
+  .why .stick{position:static}
+  .steps{grid-template-columns:1fr 1fr}
+  .step:nth-child(3){border-inline-start:0}
+  .step:nth-child(n+3){border-top:2px dashed rgba(11,22,48,.35)}
+  .contact{grid-template-columns:1fr 1fr}
+  .contact>*:nth-child(3){border-inline-start:0}
+  .contact>*:nth-child(n+3){border-top:1px solid var(--line-d)}
+  .sec{padding:90px 0}
+  .fleet .intro{padding:90px 0 20px}
+  .f-track{flex-direction:column;width:auto;padding:10px 18px 90px}
+  .f-card{width:100%;min-height:0;padding:28px 22px}
+  .f-card.end{width:100%}
+  .f-card .num{font-size:120px}
+  .lbl-wrap{position:relative;top:0}
+  .label{transform:none;box-shadow:10px 10px 0 var(--navy)}
+}
+@media (max-width:560px){
+  .svcs{grid-template-columns:1fr}
+  .svc{min-height:0}
+  .qform{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .step{border-inline-start:0!important;border-top:2px dashed rgba(11,22,48,.35)}
+  .step:first-child{border-top:0}
+  .roadv{padding-inline-start:70px}
+  .roadv .lane{inset-inline-start:14px;width:36px}.roadv .lane::before{inset-inline-start:16px}
+  .roadv .mini{inset-inline-start:10px;width:44px}
+  .ms::before{inset-inline-start:-63px}
+  .ticker span{font-size:19px}
+  .stamp{width:92px;height:92px;font-size:12px;left:-6px;top:-24px}
+  .contact{grid-template-columns:1fr}
+  .contact>*{border-inline-start:0!important;border-top:1px solid var(--line-d)}
+  .hero-side{display:none}
+  .truck-w{width:86vw;left:3%}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;animation-delay:0s!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div id="loader" aria-hidden="true"><div class="in">
+  <svg width="120" height="103" viewBox="0 0 56 48"><use href="#mk" fill="#FFC400"/></svg>
+  <div class="bar"><i></i></div>
+</div></div>
+<div id="prog"><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mk" viewBox="0 0 56 48">
+    <g transform="translate(10 0) skewX(-12)">
+      <rect x="2" y="9" width="9" height="4.5"/><rect x="5" y="18" width="6" height="4.5"/><rect x="8" y="27" width="3" height="4.5"/>
+      <rect x="14" y="6" width="9" height="36"/>
+      <path fill-rule="evenodd" d="M23 6h11l9 10-9 10H23zM23 13h8l2.6 3-2.6 3h-8z"/>
+      <path d="M27 26h10l10 16H37z"/>
+    </g>
+  </symbol>
+  <symbol id="wh" viewBox="-32 -32 64 64">
+    <circle r="30" fill="#060D1E"/><circle r="22" fill="#1B2F5E"/>
+    <g stroke="#FFC400" stroke-width="4"><path d="M0-20V20M-20 0H20M-14-14L14 14M14-14L-14 14"/></g>
+    <circle r="8" fill="#FFC400"/>
+  </symbol>
+  <symbol id="cab" viewBox="0 0 200 260">
+    <path d="M190 40H95L20 125v105h170z" fill="#fff"/>
+    <path d="M176 58h-74l-56 62h130z" fill="#0B1630"/>
+    <path d="M150 64l-20 50" stroke="#fff" stroke-opacity=".25" stroke-width="10"/>
+    <rect x="16" y="190" width="174" height="40" fill="#0B1630"/>
+    <rect x="20" y="182" width="170" height="8" fill="#FFC400"/>
+    <rect x="18" y="150" width="20" height="18" fill="#FFC400"/>
+    <svg x="118" y="132" width="46" height="40" viewBox="0 0 56 48"><use href="#mk" fill="#0B1630"/></svg>
+  </symbol>
+  <pattern id="hzp" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="10" height="20" fill="#FFC400"/><rect x="10" width="10" height="20" fill="#0B1630"/></pattern>
+</svg>
+
+<header id="hdr">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Regalex"><svg class="mk" width="46" height="40" viewBox="0 0 56 48"><use href="#mk" fill="#FFC400"/></svg><b>REGALEX</b></a>
+    <nav>
+      <a href="#services" data-en="Services">الخدمات</a>
+      <a href="#fleet" data-en="Fleet">الأسطول</a>
+      <a href="#coverage" data-en="Coverage">التغطية</a>
+      <a href="#why" data-en="Why us">ليش ريجالكس</a>
+      <a href="#about" data-en="About">من نحن</a>
+    </nav>
+    <div class="hdr-end">
+      <button class="lang" id="lang" aria-label="Switch language">EN</button>
+      <a href="#quote" class="btn b-y mag"><span data-en="Get a quote">اطلب عرض سعر</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="chev-bg"></div>
+  <div class="wrap hero-in">
+    <div>
+      <span class="tag fade" style="animation-delay:1.5s"><span data-en="Riyadh · KSA + GCC · 24/7">الرياض · المملكة + الخليج · 24/7</span></span>
+      <h1>
+        <span class="ln"><span data-en="From Riyadh,">من الرياض،</span></span>
+        <span class="ln"><span data-en="everywhere.">لكل مكان.</span></span>
+      </h1>
+      <p class="sub fade" style="animation-delay:2s" data-en="We move your freight from Riyadh to every city in the Kingdom and across the GCC — around the clock, live-tracked, on a fleet built for every load.">ننقل بضاعتك من الرياض لكل مدن المملكة ودول الخليج. على مدار الساعة، بتتبع مباشر، وبأسطول لكل نوع حمولة.</p>
+      <div class="ctas fade" style="animation-delay:2.15s">
+        <a class="btn b-y mag" href="#quote"><span data-en="Request a quote">اطلب عرض سعر</span><svg class="arr" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 10H3M9 4l-6 6 6 6"/></svg></a>
+        <a class="btn b-o mag" href="tel:+966539977551"><span data-en="Call 053 997 7551">اتصل 053 997 7551</span></a>
+      </div>
+    </div>
+    <div class="hero-side fade" style="animation-delay:2.3s">
+      <div class="chip"><span class="dot"></span><span data-en="Dispatch is live now">العمليات شغّالة الحين</span></div>
+      <div class="chip"><b>GPS</b><span data-en="Track your load live">تابع شحنتك لحظة بلحظة</span></div>
+      <div class="chip"><b>13</b><span data-en="Regions of the Kingdom">منطقة في المملكة</span></div>
+    </div>
+  </div>
+  <div class="scene" aria-hidden="true">
+    <div class="sky"><div class="track" id="skyTrack"></div></div>
+    <div class="road"></div>
+    <div class="truck-w" id="truckW">
+      <svg class="truck" viewBox="0 0 860 300">
+        <clipPath id="tc"><rect x="200" y="20" width="640" height="220"/></clipPath>
+        <g class="body">
+          <rect x="200" y="20" width="640" height="220" fill="#13234A"/>
+          <g clip-path="url(#tc)">
+            <path d="M600 20h70l-110 110 110 110h-70L490 130z" fill="#FFC400"/>
+            <path d="M720 20h70l-110 110 110 110h-70L610 130z" fill="#FFC400" opacity=".4"/>
+            <rect x="820" y="20" width="20" height="220" fill="url(#hzp)"/>
+          </g>
+          <rect x="200" y="20" width="640" height="220" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="2"/>
+          <svg x="232" y="58" width="84" height="72" viewBox="0 0 56 48"><use href="#mk" fill="#FFC400"/></svg>
+          <text x="326" y="122" font-family="Barlow Condensed" font-style="italic" font-weight="900" font-size="72" fill="#fff">REGALEX</text>
+          <text x="236" y="180" font-family="Cairo" font-weight="900" font-size="30" fill="#fff">من الرياض، لكل مكان</text>
+          <text x="236" y="218" font-family="Barlow Condensed" font-style="italic" font-weight="700" font-size="22" fill="#FFC400">24/7 · GPS · KSA + GCC</text>
+          <use href="#cab" x="10" y="0" width="200" height="260"/>
+          <rect x="20" y="236" width="820" height="14" fill="#060D1E"/>
+        </g>
+        <g transform="translate(102 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(172 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g>
+        <g transform="translate(672 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(738 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(804 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g>
+      </svg>
+      <div class="wind"><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="t" id="tick"></div></div>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="wrap g">
+    <div class="stat rv"><span class="n"><span class="cnt" data-to="24">24</span>/7</span><p data-en="Operations never close">تشغيل ما يوقف</p></div>
+    <div class="stat rv"><span class="n cnt" data-to="12">12</span><p data-en="Freight services">خدمة نقل</p></div>
+    <div class="stat rv"><span class="n cnt" data-to="13">13</span><p data-en="Regions covered in KSA">منطقة نغطيها في المملكة</p></div>
+    <div class="stat rv"><span class="n">+<span class="cnt" data-to="5">5</span></span><p data-en="GCC countries">دول خليجية</p></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="sec light">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag rv" data-en="01 — Services">01 — الخدمات</span><h2 class="rv" data-en="Everything your freight needs. <em>One company.</em>">كل ما تحتاجه شحنتك. <em>شركة وحدة.</em></h2></div>
+      <p class="rv" data-en="From a single airport pickup to a yearly contract — from a parcel in Riyadh to a full trailer to the Gulf.">من شحنة وحدة من المطار إلى عقد سنوي، ومن طرد داخل الرياض إلى تريلة كاملة للخليج.</p>
+    </div>
+    <div class="svcs" id="svcs"></div>
+    <div class="price rv">
+      <strong><span data-en="Clear pricing — per km or per contract.">أسعار واضحة: بالكيلومتر أو بالعقد.</span><small data-en="Cargo insurance available on request.">وتأمين على البضاعة عند الطلب.</small></strong>
+      <a href="#quote" class="btn b-n mag"><span data-en="Price my shipment">احسب سعر شحنتك</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FLEET -->
+<section id="fleet" class="fleet">
+  <div class="wrap intro">
+    <div class="head" style="margin:0">
+      <div><span class="tag rv" data-en="02 — Fleet">02 — الأسطول</span><h2 class="rv" data-en="A truck for <em>every</em> kind of load">مركبة لـ<em>كل</em> نوع حمولة</h2></div>
+      <p class="rv" data-en="Keep scrolling — the fleet rolls past. Every vehicle is GPS-tracked.">كمّل نزول وشوف الأسطول يمر قدامك. وكل مركبة عليها تتبع GPS.</p>
+    </div>
+  </div>
+  <div class="f-pin">
+    <div class="f-track" id="ftrack">
+      <article class="f-card">
+        <span class="num">01</span>
+        <h3><span data-en="Open flatbed trailers">تريلات مفتوحة</span><span class="lat">Flatbed</span></h3>
+        <div class="vis"><svg viewBox="0 0 860 300">
+          <rect x="200" y="196" width="640" height="24" fill="#1B2F5E"/>
+          <rect x="300" y="96" width="190" height="100" fill="#FFC400"/><rect x="330" y="60" width="90" height="40" fill="#FFC400"/><path d="M490 120l90-60 14 14-80 56z" fill="#FFC400"/><rect x="570" y="56" width="50" height="34" fill="#FFC400"/><circle cx="340" cy="186" r="16" fill="#0B1630"/><circle cx="450" cy="186" r="16" fill="#0B1630"/>
+          <rect x="650" y="130" width="150" height="66" fill="#fff" stroke="#0B1630" stroke-width="3"/><path d="M650 163h150" stroke="#0B1630" stroke-width="3"/>
+          <path d="M310 196L360 96M480 196L430 96" stroke="#fff" stroke-width="2" stroke-dasharray="6 6" opacity=".6"/>
+          <use href="#cab" x="10" y="0" width="200" height="260"/><rect x="20" y="236" width="820" height="14" fill="#060D1E"/>
+          <g transform="translate(102 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(172 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(672 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(738 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(804 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g>
+        </svg></div>
+        <div class="specs"><span class="y" data-en="Heavy equipment">معدات ثقيلة</span><span data-en="Building materials">مواد بناء</span><span data-en="General cargo">بضائع عامة</span></div>
+      </article>
+      <article class="f-card">
+        <span class="num">02</span>
+        <h3><span data-en="Refrigerated trucks">دينات مبرّدة</span><span class="lat">Reefer</span></h3>
+        <div class="vis"><svg viewBox="0 0 860 300">
+          <rect x="200" y="30" width="640" height="210" fill="#fff"/>
+          <rect x="196" y="60" width="26" height="110" fill="#FFC400"/><path d="M200 80h18M200 100h18M200 120h18M200 140h18" stroke="#0B1630" stroke-width="3"/>
+          <g class="snow"><g transform="translate(520 125)" stroke="#0B1630" stroke-width="10" stroke-linecap="round"><path d="M0-70V70M-61-35L61 35M61-35L-61 35"/><path d="M0-70l-18-18M0-70l18-18M0 70l-18 18M0 70l18 18" stroke-width="7"/></g></g>
+          <text x="250" y="222" font-family="Barlow Condensed" font-style="italic" font-weight="900" font-size="34" fill="#0B1630">REGALEX · COLD CHAIN</text>
+          <use href="#cab" x="10" y="0" width="200" height="260"/><rect x="20" y="236" width="820" height="14" fill="#060D1E"/>
+          <g transform="translate(102 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(172 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(712 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(792 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g>
+        </svg></div>
+        <div class="specs"><span class="y" data-en="Food">أغذية</span><span data-en="Temperature-sensitive">منتجات حساسة للحرارة</span><span data-en="Cold chain">سلسلة تبريد</span></div>
+      </article>
+      <article class="f-card">
+        <span class="num">03</span>
+        <h3><span data-en="Dry van trailers">تريلات جاف</span><span class="lat">Dry van</span></h3>
+        <div class="vis"><svg viewBox="0 0 860 300">
+          <clipPath id="dv"><rect x="200" y="20" width="640" height="220"/></clipPath>
+          <rect x="200" y="20" width="640" height="220" fill="#0B1630"/>
+          <g clip-path="url(#dv)"><path d="M540 20h80L510 130l110 110h-80L430 130z" fill="#FFC400"/><path d="M680 20h80L650 130l110 110h-80L570 130z" fill="#FFC400" opacity=".4"/></g>
+          <rect x="200" y="20" width="640" height="220" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="2"/>
+          <svg x="240" y="66" width="70" height="60" viewBox="0 0 56 48"><use href="#mk" fill="#FFC400"/></svg>
+          <text x="236" y="190" font-family="Barlow Condensed" font-style="italic" font-weight="900" font-size="64" fill="#fff">REGALEX</text>
+          <use href="#cab" x="10" y="0" width="200" height="260"/><rect x="20" y="236" width="820" height="14" fill="#060D1E"/>
+          <g transform="translate(102 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(172 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(672 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(738 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g><g transform="translate(804 262)"><g class="spin"><use href="#wh" x="-32" y="-32" width="64" height="64"/></g></g>
+        </svg></div>
+        <div class="specs"><span class="y" data-en="General cargo">بضائع عامة</span><span data-en="E-commerce">تجارة إلكترونية</span><span data-en="Office moves">نقل مكاتب</span></div>
+      </article>
+      <article class="f-card end">
+        <h3 data-en="Not sure which truck fits your load?">ما تدري أي مركبة تناسب شحنتك؟</h3>
+        <p style="font-size:19px;font-weight:600" data-en="Tell us what you're moving — our team picks the right vehicle and route.">قل لنا وش بتنقل، وفريقنا يختار المركبة والطريق المناسب.</p>
+        <a href="#quote" class="btn b-n mag" style="width:max-content"><span data-en="Ask our team">اسأل فريقنا</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage" class="sec cov">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag rv" data-en="03 — Coverage">03 — التغطية</span><h2 class="rv" data-en="Every route starts in <em>Riyadh.</em>">كل طريق يبدأ من <em>الرياض.</em></h2></div>
+      <p class="rv" data-en="Daily local distribution, long-haul to any city in the Kingdom, and cross-border runs to the Gulf — all dispatched from Riyadh.">توزيع يومي داخل الرياض، ونقل لأي مدينة في المملكة، ورحلات برية لدول الخليج. وكلها تنطلق من الرياض.</p>
+    </div>
+    <div class="map-wrap">
+      <div class="map">
+        <svg viewBox="0 0 720 500" id="mapSvg" role="img" aria-label="خريطة التغطية: من الرياض إلى مدن المملكة ودول الخليج">
+          <path class="land" d="M28 87 L84 28 L146 8 L224 39 L300 92 L350 95 L403 112 L437 151 L451 176 L470 216 L493 230 L605 274 L588 350 L504 378 L414 400 L350 426 L280 423 L260 434 L241 437 L196 378 L146 308 L112 238 L70 182 L34 126 Z"/>
+          <g id="routes"></g>
+          <g id="cities"></g>
+        </svg>
+      </div>
+      <div class="legend">
+        <div class="lg y rv"><span class="code">RUH</span><b data-en="Riyadh — operations base">الرياض · مقر التشغيل</b><span data-en="Every trip dispatched from here">كل الرحلات تنطلق من هنا</span></div>
+        <div class="lg rv"><span class="code">KSA</span><b data-en="Every city in the Kingdom">جميع مدن المملكة</b><span data-en="North, south, east and west">شمال، جنوب، شرق، وغرب</span></div>
+        <div class="lg rv"><span class="code">GCC</span><b data-en="The Gulf states">دول الخليج</b><span data-en="Cross-border land freight">نقل بري عابر للحدود</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" class="sec white">
+  <div class="wrap why">
+    <div class="stick">
+      <span class="tag" data-en="04 — Why Regalex">04 — ليش ريجالكس</span>
+      <h2 data-en="Six things we never compromise on.">ستة أشياء ما نتنازل عنها.</h2>
+      <p data-en="Scroll down the road — every stop is a promise.">انزل مع الطريق، وكل محطة فيه وعد.</p>
+    </div>
+    <div class="roadv" id="roadv">
+      <div class="lane"></div>
+      <svg class="mini" id="mini" viewBox="0 0 52 110"><path d="M8 4h36l4 26H4z" fill="#fff" stroke="#0B1630" stroke-width="2"/><rect x="10" y="10" width="32" height="12" fill="#0B1630"/><rect x="4" y="34" width="44" height="72" fill="#0B1630" stroke="#FFC400" stroke-width="3"/><rect x="10" y="60" width="32" height="6" fill="#FFC400"/><rect x="10" y="74" width="32" height="6" fill="#FFC400"/></svg>
+      <div class="ms"><span class="k">01</span><h3 data-en="Cargo safety">سلامة البضاعة</h3><p data-en="Dedicated tie-down and handling so every load arrives the way it left.">ربط وتأمين مخصص للحمولة، عشان توصل مثل ما طلعت.</p></div>
+      <div class="ms"><span class="k">02</span><h3 data-en="On time">في الموعد</h3><p data-en="Tight schedule control with direct driver-to-dispatch coordination.">إدارة دقيقة للجدول، وتنسيق مباشر بين السائق وغرفة العمليات.</p></div>
+      <div class="ms"><span class="k">03</span><h3 data-en="Know where your load is">تعرف وين شحنتك</h3><p data-en="GPS on every truck — follow your shipment live.">كل مركبة عليها GPS، وتقدر تتابع شحنتك لحظة بلحظة.</p></div>
+      <div class="ms"><span class="k">04</span><h3 data-en="Open 24/7">شغّالين 24/7</h3><p data-en="Dispatch never closes: night runs, weekends and urgent loads.">غرفة العمليات ما تقفل: رحلات ليلية، إجازات، وشحنات مستعجلة.</p></div>
+      <div class="ms"><span class="k">05</span><h3 data-en="A modern fleet">أسطول حديث</h3><p data-en="Flatbed, refrigerated and dry van — the right truck for every load.">مفتوحة، مبرّدة، وجاف: المركبة الصح لكل شحنة.</p></div>
+      <div class="ms"><span class="k">06</span><h3 data-en="Long-term partnership">شراكة طويلة</h3><p data-en="Relationships built on trust and quality that doesn't change.">علاقات مبنية على الثقة، وجودة ما تتغيّر.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec light">
+  <div class="wrap">
+    <div class="head">
+      <div><span class="tag rv" data-en="05 — How it works">05 — كيف نشتغل</span><h2 class="rv" data-en="Four steps from <em>request</em> to delivery">أربع خطوات من <em>الطلب</em> للتسليم</h2></div>
+    </div>
+    <div class="rv">
+      <div class="steps-top"><span class="lat" style="font-size:22px">REGALEX · WAYBILL</span><span class="barcode"></span></div>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3 data-en="Request">تطلب</h3><p data-en="Send pickup, destination and cargo on WhatsApp or the form.">ترسل لنا من وين ولوين ووش الشحنة، بالواتساب أو النموذج.</p></div>
+        <div class="step"><div class="n">2</div><h3 data-en="We confirm">نأكّد</h3><p data-en="You get a clear price and the right vehicle is scheduled.">يوصلك سعر واضح، ونجدول المركبة المناسبة.</p></div>
+        <div class="step"><div class="n">3</div><h3 data-en="Load &amp; track">نحمّل وتتابع</h3><p data-en="Your cargo is secured and you follow it live on GPS.">نربط الحمولة ونأمّنها، وأنت تتابعها مباشرة بالـGPS.</p></div>
+        <div class="step"><div class="n">4</div><h3 data-en="Delivered">نسلّم</h3><p data-en="Delivered to the door, on time.">نسلّمها لين الباب، في موعدها.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec white">
+  <div class="wrap about">
+    <div>
+      <span class="tag rv" data-en="06 — About">06 — من نحن</span>
+      <p class="big rv" style="margin-top:24px" data-en="Regalex is a Riyadh-based freight company offering local and international transport. We want to be the partner businesses trust with their transport and logistics — through a modern fleet and options that fit every shipment.">ريجالكس شركة نقل بضائع مقرّها الرياض، تقدّم حلول نقل محلية ودولية. نبي نكون <em>الشريك اللي تثق فيه الشركات</em> في نقل بضائعها، بأسطول حديث وخيارات تناسب كل شحنة.</p>
+    </div>
+    <div class="vm">
+      <div class="rv"><h3 data-en="Vision">رؤيتنا</h3><p data-en="To be a trusted choice in transport, through professional service and long-term relationships.">أن نكون خياراً موثوقاً في النقل، بخدمة احترافية وعلاقات طويلة الأمد.</p></div>
+      <div class="rv"><h3 data-en="Mission">رسالتنا</h3><p data-en="Safe, dependable transport with flexible solutions that meet each client's needs.">نقل آمن وملتزم، بحلول مرنة تلبّي احتياج كل عميل.</p></div>
+      <div class="rv"><h3 data-en="Values">قيمنا</h3><div class="vals"><span data-en="Quality">الجودة</span><span data-en="Commitment">الالتزام</span><span data-en="Safety">السلامة</span><span data-en="Professionalism">الاحترافية</span><span data-en="Partnership">الشراكة</span><span data-en="Service">خدمة العملاء</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section id="quote" class="sec quote">
+  <div class="wrap g">
+    <div>
+      <span class="tag" style="background:var(--navy);color:var(--yellow)" data-en="07 — Quote">07 — عرض سعر</span>
+      <h2 style="margin-top:20px" data-en="Where's your shipment going?">وين تبي شحنتك توصل؟</h2>
+      <p class="lead" data-en="Fill it in, watch your waybill build itself, and send it to us on WhatsApp.">عبّي البيانات، وشوف بوليصتك تتجهّز قدامك، وأرسلها لنا على الواتساب.</p>
+      <form class="qform" id="qf">
+        <label><span data-en="Name">الاسم</span><input name="name" required autocomplete="name"></label>
+        <label><span data-en="Company">الشركة</span><input name="company" autocomplete="organization"></label>
+        <label><span data-en="From">من</span><input name="from" required placeholder="الرياض"></label>
+        <label><span data-en="To">إلى</span><input name="to" required placeholder="الدمام"></label>
+        <label class="full"><span data-en="Service">الخدمة</span><select name="service" id="svcSel"></select></label>
+        <label class="full"><span data-en="Cargo (type, weight, date)">الشحنة (النوع، الوزن، التاريخ)</span><textarea name="msg"></textarea></label>
+        <button class="btn b-n mag" type="submit"><span data-en="Send on WhatsApp">أرسل على الواتساب</span><svg class="arr" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 10H3M9 4l-6 6 6 6"/></svg></button>
+      </form>
+    </div>
+    <div class="lbl-wrap">
+      <div class="label" id="lbl">
+        <div class="stamp" id="stamp"><span data-en="READY<br>TO SHIP">جاهزة<br>للشحن</span></div>
+        <div class="hd"><span class="logo"><svg class="mk" width="40" height="34" viewBox="0 0 56 48"><use href="#mk" fill="#FFC400"/></svg><b style="font-size:24px">REGALEX</b></span><span class="lat" style="font-size:22px;color:var(--yellow)">24/7</span></div>
+        <div class="r" style="grid-template-columns:1fr auto 1fr"><div class="c"><small>From</small><div class="v" id="lFrom">الرياض</div></div><div class="arrow" aria-hidden="true" id="lArr">←</div><div class="c" style="border-inline-start:0"><small>To</small><div class="v" id="lTo">—</div></div></div>
+        <div class="r" style="grid-template-columns:1fr 1fr"><div class="c"><small>Shipper</small><div class="v" id="lName" style="font-size:20px">—</div></div><div class="c"><small>Service</small><div class="v" id="lSvc" style="font-size:20px">—</div></div></div>
+        <div class="r"><div class="c"><small>Cargo</small><div class="v" id="lMsg" style="font-size:17px;font-weight:700;min-height:2.6em">—</div></div></div>
+        <div class="r" style="grid-template-columns:1fr auto"><div class="c" style="display:flex;align-items:center"><span class="barcode" style="filter:invert(1);width:100%;max-width:260px"></span></div><div class="c"><small>Tracking</small><div class="v lat" style="font-size:26px">GPS LIVE</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section style="background:var(--navy)">
+  <div class="wrap contact">
+    <a href="tel:+966539977551"><small data-en="Phone">هاتف</small><b>+966 53 997 7551</b></a>
+    <a href="https://wa.me/966539977551" target="_blank" rel="noopener"><small data-en="WhatsApp">واتساب</small><b>053 997 7551</b></a>
+    <a href="mailto:Info@regalex.sa"><small data-en="Email">البريد</small><b>Info@regalex.sa</b></a>
+    <a href="regalex-profile.pdf" target="_blank" rel="noopener"><small data-en="Company profile">بروفايل الشركة</small><b data-en="Download PDF ↓">حمّل PDF ↓</b></a>
+  </div>
+  <div class="mega" aria-hidden="true"><div class="t" id="mega"></div></div>
+  <div class="hz"></div>
+</section>
+</main>
+<footer><div class="wrap">
+  <span data-en="© 2026 Regalex Co. · CR 7054696385 · Riyadh">© 2026 شركة ريجالكس · س.ت 7054696385 · الرياض</span>
+  <span class="lat" style="font-size:18px">REGALEX.SA</span>
+</div></footer>
+
+<a class="wa" href="https://wa.me/966539977551" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.1 5.1 0 0 0 1.1 2.7 11.6 11.6 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></svg>
+</a>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+setTimeout(()=>{const l=document.getElementById("loader");if(l)l.remove()},2400);
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* services data */
+const SVCS=[
+ ['شحنات المطار','Airport cargo','استلام من المطار وتوصيل لين الباب.','Airport pickup, delivered to your door.','<path class="ic-a" d="M6 38L46 18l-3-6-16 7-14-6-5 3 11 9-11 5-6-3-3 4z"/><rect class="ic-b" x="6" y="44" width="40" height="5"/>'],
+ ['نقل مجدول للشركات','Scheduled B2B runs','رحلات ثابتة تبني عليها جدول شغلك.','Fixed recurring runs you can plan around.','<rect class="ic-a" x="6" y="10" width="40" height="38"/><rect class="ic-b" x="6" y="10" width="40" height="9"/><rect x="14" y="26" width="8" height="8" fill="#fff"/><rect x="30" y="26" width="8" height="8" fill="#fff"/>'],
+ ['تأجير مركبة مخصصة','Vehicle chartering','مركبة كاملة محجوزة لشحنتك بس.','A whole vehicle reserved for your cargo.','<path class="ic-a" d="M4 14h30v22H4zM34 22h9l7 8v6H34z"/><circle class="ic-b" cx="13" cy="40" r="5"/><circle class="ic-b" cx="40" cy="40" r="5"/>'],
+ ['نقل بالعقود','Contract freight','عقود نقل واضحة للعملاء التجاريين.','Clear contract haulage for businesses.','<path class="ic-a" d="M12 4h20l10 10v34H12z"/><path d="M18 24h18M18 31h18M18 38h10" stroke="#fff" stroke-width="3"/><circle class="ic-b" cx="40" cy="42" r="6"/>'],
+ ['توزيع داخل الرياض','Riyadh distribution','توزيع سريع وموثوق بين أحياء الرياض.','Fast, dependable distribution across Riyadh.','<path class="ic-a" d="M26 50S10 33 10 21a16 16 0 0 1 32 0c0 12-16 29-16 29z"/><circle class="ic-b" cx="26" cy="21" r="6"/>'],
+ ['نقل بين المدن','Long-haul','من الرياض لجميع مدن المملكة.','From Riyadh to every city in the Kingdom.','<path class="ic-a" d="M4 46c12 0 12-18 24-18s12-14 20-18l3 4c-7 4-8 18-23 18S16 46 4 50z"/><circle class="ic-b" cx="46" cy="10" r="6"/>'],
+ ['نقل دولي للخليج','GCC freight','نقل بري لدول مجلس التعاون الخليجي.','Cross-border trucking to the Gulf states.','<circle class="ic-a" cx="26" cy="26" r="22"/><path d="M4 26h44M26 4c7 6 9 14 9 22s-2 16-9 22c-7-6-9-14-9-22s2-16 9-22z" stroke="#FFC400" stroke-width="3" fill="none"/>'],
+ ['نقل مبرّد','Refrigerated','للأغذية والمنتجات الحساسة للحرارة.','For food and temperature-sensitive goods.','<rect class="ic-a" x="4" y="6" width="44" height="42"/><path d="M26 12v30M13 19l26 16M39 19L13 35" stroke="#FFC400" stroke-width="3.5"/>'],
+ ['نقل المعدات الثقيلة','Heavy equipment','تريلات مفتوحة للمعدات والمكائن.','Flatbeds for machinery and site equipment.','<path class="ic-a" d="M4 38h44v6H4zM8 38V26h16v12zM24 28l12-16h6l-10 16z"/><rect class="ic-b" x="38" y="8" width="10" height="8"/>'],
+ ['نقل مواد البناء','Building materials','حديد وبلك ومواد لين موقع المشروع.','Steel, blocks and materials to your site.','<path class="ic-a" d="M6 48V20L26 6l20 14v28z"/><rect class="ic-b" x="18" y="32" width="16" height="16"/>'],
+ ['توصيل التجارة الإلكترونية','E-commerce delivery','من المستودع لين عميل المتجر.','Warehouse to your store’s customer.','<rect class="ic-a" x="6" y="16" width="40" height="32"/><path d="M18 16V8h16v8" stroke="#0B1630" stroke-width="3" fill="none"/><rect class="ic-b" x="6" y="24" width="40" height="5"/>'],
+ ['نقل المكاتب والمستودعات','Office & warehouse moves','نقل مكاتب ومخزون بخطة واضحة.','Planned moves of offices and stock.','<path class="ic-a" d="M4 48V14h28v34zM32 26h16v22H32z"/><rect x="10" y="20" width="6" height="6" fill="#fff"/><rect x="20" y="20" width="6" height="6" fill="#fff"/><rect class="ic-b" x="36" y="32" width="8" height="16"/>'],
+];
+const esc=s=>s.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+$('#svcs').innerHTML=SVCS.map((s,i)=>`<article class="svc"><span class="no">${String(i+1).padStart(2,'0')}</span><svg viewBox="0 0 52 52">${s[4]}</svg><h3 data-en="${esc(s[1])}">${s[0]}</h3><p data-en="${esc(s[3])}">${s[2]}</p></article>`).join('');
+$('#svcSel').innerHTML=SVCS.map(s=>`<option data-en="${esc(s[1])}">${s[0]}</option>`).join('');
+
+/* ticker + mega marquee */
+const CITIES_AR=['الرياض','جدة','مكة','المدينة','الدمام','الخبر','الجبيل','القصيم','حائل','تبوك','أبها','جازان','نجران','الجوف','الكويت','البحرين','الدوحة','دبي','أبوظبي','مسقط'];
+const CITIES_EN=['Riyadh','Jeddah','Makkah','Madinah','Dammam','Khobar','Jubail','Qassim','Hail','Tabuk','Abha','Jazan','Najran','Al Jouf','Kuwait','Bahrain','Doha','Dubai','Abu Dhabi','Muscat'];
+function fillTicker(l){const c=(l==='ar'?CITIES_AR:CITIES_EN).map(x=>`<span>${x}</span>`).join('');$('#tick').innerHTML=c+c;}
+$('#mega').innerHTML=Array(6).fill(0).map((_,i)=>`<span>${i%2?'REGALEX':'FROM RIYADH · EVERYWHERE'}</span>`).join('');
+
+/* skyline with Riyadh landmarks (Faisaliah sphere, Kingdom Centre arch) */
+(function(){
+  const B=(x,w,h)=>`<rect x="${x}" y="${190-h}" width="${w}" height="${h}"/>`;
+  const sky=`<svg viewBox="0 0 1600 190" preserveAspectRatio="xMinYMax meet"><g fill="#1A2D5E">
+    ${B(0,70,60)}${B(80,40,95)}${B(130,90,50)}${B(230,50,120)}${B(290,60,70)}
+    <path d="M380 190L398 60h6l10-40h4l10 40h6l18 130z"/><circle cx="414" cy="78" r="13" fill="#1B2F5E"/>
+    ${B(470,80,80)}${B(560,46,110)}${B(616,70,58)}
+    <path fill-rule="evenodd" d="M712 190L722 30Q750 0 778 30L788 190zM736 34Q750 70 764 34Q750 18 736 34z"/>
+    ${B(800,60,90)}${B(870,90,60)}${B(970,40,130)}${B(1020,70,75)}${B(1100,52,100)}
+    <path d="M1170 190V90l25-30 25 30v100z"/>${B(1230,80,66)}${B(1320,44,118)}${B(1374,90,54)}${B(1474,60,92)}${B(1540,60,70)}
+  </g><g fill="#FFC400" opacity=".55">${Array.from({length:40},(_,i)=>`<rect x="${(i*157)%1580+10}" y="${120+(i*37)%60}" width="5" height="5"/>`).join('')}</g></svg>`;
+  $('#skyTrack').innerHTML=sky+sky;
+})();
+
+/* coverage map */
+(function(){
+  const P={RUH:[356,218],JED:[146,308],MKH:[170,322],MED:[157,224],DMM:[451,171],TBK:[73,115],AHB:[238,400],QSM:[279,174],HAS:[216,140],JZN:[239,437],NJR:[283,420],JOF:[174,70],
+           KWI:[391,82],BAH:[480,160],DOH:[505,200],DXB:[612,196],AUH:[578,232],MCT:[690,252]};
+  const N={RUH:['الرياض','Riyadh'],JED:['جدة','Jeddah'],MKH:['مكة','Makkah'],MED:['المدينة','Madinah'],DMM:['الدمام','Dammam'],TBK:['تبوك','Tabuk'],AHB:['أبها','Abha'],QSM:['القصيم','Qassim'],HAS:['حائل','Hail'],JZN:['جازان','Jazan'],NJR:['نجران','Najran'],JOF:['الجوف','Al Jouf'],
+           KWI:['الكويت','Kuwait'],BAH:['البحرين','Bahrain'],DOH:['الدوحة','Doha'],DXB:['دبي','Dubai'],AUH:['أبوظبي','Abu Dhabi'],MCT:['مسقط','Muscat']};
+  const gcc=['KWI','BAH','DOH','DXB','AUH','MCT'];
+  const [rx,ry]=P.RUH; let r='',c='';
+  Object.entries(P).forEach(([k,[x,y]])=>{
+    if(k==='RUH')return;
+    const g=gcc.includes(k), mx=(rx+x)/2+(y-ry)*.18, my=(ry+y)/2-(x-rx)*.18;
+    r+=`<path class="rt${g?' gcc':''}" id="rt-${k}" d="M${rx} ${ry} Q${mx.toFixed(0)} ${my.toFixed(0)} ${x} ${y}"/>`;
+    const left=['JED','MKH','JZN','AHB'].includes(k);
+    c+=`<g class="city${g?' gc':''}"><circle cx="${x}" cy="${y}" r="${g?6:5}"/><text x="${left?x-10:x+10}" y="${y+5}" text-anchor="${left?'end':'start'}" data-ar="${N[k][0]}" data-en2="${N[k][1]}">${N[k][0]}</text></g>`;
+  });
+  ['DMM','JED','DXB','TBK','AHB','KWI'].forEach((k,i)=>{r+=`<circle r="5" fill="#FFC400"><animateMotion dur="${3+i*.6}s" repeatCount="indefinite" begin="${i*.4}s"><mpath href="#rt-${k}"/></animateMotion></circle>`});
+  c+=`<g class="hq"><circle class="pulse" cx="${rx}" cy="${ry}" r="14"/><circle class="c" cx="${rx}" cy="${ry}" r="11"/><text x="${rx-14}" y="${ry+30}" fill="#FFC400" font-family="Cairo" font-weight="900" font-size="20" data-ar="الرياض" data-en2="Riyadh">الرياض</text></g>`;
+  $('#routes').innerHTML=r; $('#cities').innerHTML=c;
+})();
+
+/* language */
+let lang='ar';
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l; document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  $$('[data-en]').forEach(n=>{ if(n.dataset.ar===undefined) n.dataset.ar=n.innerHTML; n.innerHTML=l==='ar'?n.dataset.ar:n.dataset.en; });
+  $$('[data-en2]').forEach(n=>n.textContent=l==='ar'?n.dataset.ar:n.dataset.en2);
+  $('#lang').textContent=l==='ar'?'EN':'ع';
+  $('#lArr').textContent=l==='ar'?'←':'→';
+  $('[name=from]').placeholder=l==='ar'?'الرياض':'Riyadh';
+  $('[name=to]').placeholder=l==='ar'?'الدمام':'Dammam';
+  fillTicker(l); syncLabel();
+  try{localStorage.setItem('rgx-lang',l)}catch(e){}
+  if(window.ScrollTrigger) ScrollTrigger.refresh();
+}
+$('#lang').onclick=()=>setLang(lang==='ar'?'en':'ar');
+
+/* live waybill */
+const f=$('#qf');
+function syncLabel(){
+  const d=new FormData(f), dash='—';
+  const set=(id,v)=>{const el=$(id),nv=v||dash; if(el.textContent!==nv){el.textContent=nv; el.classList.add('flash'); setTimeout(()=>el.classList.remove('flash'),250)}};
+  set('#lFrom',d.get('from')||(lang==='ar'?'الرياض':'Riyadh')); set('#lTo',d.get('to'));
+  set('#lName',[d.get('name'),d.get('company')].filter(Boolean).join(' · ')); set('#lSvc',d.get('service')); set('#lMsg',d.get('msg'));
+  $('#stamp').classList.toggle('go',!!(d.get('name')&&d.get('to')));
+}
+f.addEventListener('input',syncLabel); f.addEventListener('change',syncLabel);
+f.addEventListener('submit',e=>{
+  e.preventDefault(); const d=new FormData(f), ar=lang==='ar';
+  const L=ar?['طلب عرض سعر — ريجالكس','الاسم: '+d.get('name'),'الشركة: '+(d.get('company')||'-'),'من: '+d.get('from')+'  إلى: '+d.get('to'),'الخدمة: '+d.get('service'),'الشحنة: '+(d.get('msg')||'-')]
+           :['Quote request — Regalex','Name: '+d.get('name'),'Company: '+(d.get('company')||'-'),'From: '+d.get('from')+'  To: '+d.get('to'),'Service: '+d.get('service'),'Cargo: '+(d.get('msg')||'-')];
+  window.open('https://wa.me/966539977551?text='+encodeURIComponent(L.join('\n')),'_blank','noopener');
+});
+
+/* header + progress */
+let lastY=0;
+addEventListener('scroll',()=>{
+  const y=scrollY,h=$('#hdr');
+  h.classList.toggle('solid',y>40); h.classList.toggle('hide',y>lastY&&y>600); lastY=y;
+  $('#prog i').style.width=(y/(document.documentElement.scrollHeight-innerHeight)*100)+'%';
+},{passive:true});
+
+/* magnetic buttons + 3D tilt (mouse only) */
+if(matchMedia('(hover:hover)').matches&&!RM){
+  $$('.mag').forEach(b=>{
+    b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.3}px)`});
+    b.addEventListener('mouseleave',()=>b.style.transform='');
+  });
+  $$('.svc').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(700px) rotateY(${x*8}deg) rotateX(${-y*8}deg) translateY(-4px)`});
+    c.addEventListener('mouseleave',()=>c.style.transform='');
+  });
+}
+
+/* counters */
+function count(el){const to=+el.dataset.to,t0=performance.now(),d=1400;el.textContent='0';(function step(t){const p=Math.min(1,(t-t0)/d);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(t0)}
+if(!RM){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){count(e.target);io.unobserve(e.target)}}),{threshold:.6});$$('.cnt').forEach(c=>io.observe(c));}
+
+/* why milestones */
+const ms=$$('.ms');
+if(RM) ms.forEach(m=>m.classList.add('on'));
+else{const io2=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('on',e.isIntersecting)),{rootMargin:'-30% 0px -40% 0px'});ms.forEach(m=>io2.observe(m));}
+
+/* GSAP choreography (page still works fully without it) */
+if(window.gsap&&window.ScrollTrigger&&!RM){
+  gsap.registerPlugin(ScrollTrigger);
+  $$('.rv').forEach(el=>gsap.from(el,{y:50,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}}));
+  gsap.from('.svc',{y:70,opacity:0,duration:.9,ease:'power3.out',stagger:.06,scrollTrigger:{trigger:'#svcs',start:'top 82%'}});
+  gsap.from('.step',{y:40,opacity:0,duration:.7,stagger:.15,ease:'power3.out',scrollTrigger:{trigger:'.steps',start:'top 85%'}});
+  // map
+  $$('.rt:not(.gcc)').forEach(p=>{const L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L});
+  gsap.timeline({scrollTrigger:{trigger:'#mapSvg',start:'top 75%'}})
+    .from('.land',{opacity:0,scale:.92,transformOrigin:'50% 50%',duration:.8,ease:'power2.out'})
+    .to('.rt:not(.gcc)',{strokeDashoffset:0,duration:1.2,stagger:.06,ease:'power2.inOut'},'-=.2')
+    .from('.rt.gcc',{opacity:0,duration:.6,stagger:.08},'-=.6')
+    .from('.city',{opacity:0,duration:.4,stagger:.04},'-=1');
+  // fleet: horizontal ride while pinned (desktop)
+  ScrollTrigger.matchMedia({'(min-width:1001px)':function(){
+    const tr=$('#ftrack'), dist=()=>Math.max(0,tr.scrollWidth-innerWidth+64);
+    gsap.to(tr,{x:()=>(document.documentElement.dir==='rtl'?1:-1)*dist(),ease:'none',scrollTrigger:{trigger:'.f-pin',start:'top top',end:()=>'+='+dist(),pin:true,scrub:1,invalidateOnRefresh:true}});
+  }});
+  // why: mini truck drives down the road
+  gsap.to('#mini',{y:()=>$('#roadv').offsetHeight-110,ease:'none',scrollTrigger:{trigger:'#roadv',start:'top 60%',end:'bottom 60%',scrub:.6,invalidateOnRefresh:true}});
+  // hero parallax
+  gsap.to('#truckW',{xPercent:-35,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-in',{y:-80,opacity:.15,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.from('#lbl',{rotate:8,y:80,opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#quote',start:'top 70%'}});
+}
+
+fillTicker('ar');
+try{if(localStorage.getItem('rgx-lang')==='en')setLang('en')}catch(e){}
+syncLabel();
+</script>
+</body>
+</html>
